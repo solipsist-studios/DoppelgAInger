@@ -8,7 +8,7 @@ using TMPro;
 
 using OpenAI;
 
-namespace VRMViewer
+namespace Doppelgainger
 {
     [Serializable]
     public class ChatEvent : UnityEvent<string> { }

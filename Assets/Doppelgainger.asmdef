@@ -8,9 +8,7 @@
         "GUID:07dcbb6497358493fa23aaaad4b6b054"
     ],
     "includePlatforms": [],
-    "excludePlatforms": [
-        "Editor"
-    ],
+    "excludePlatforms": [],
     "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],

@@ -9,22 +9,19 @@ import Foundation
 import SwiftUI
 import UnityFramework
 
-struct HelloWorldContentView: View {
+struct DebugMenuContentView: View {
     var body: some View {
         VStack {
-            Text("Hello, SwiftUI!")
-            Button("Spawn Red Object") {
-                CallCSharpCallback("spawn red")
+            Text("Main Menu")
+            Button("Play Sound") {
+                CallCSharpCallback("play sound")
             }
-            Button("Spawn Green Object") {
-                CallCSharpCallback("spawn green")
-            }
-            Button("Spawn Blue Object") {
-                CallCSharpCallback("spawn blue")
+            Button("Switch Avatar") {
+                CallCSharpCallback("next avatar")
             }
         }
         .onAppear {
-            // Call the public function that was defined in SwiftUISamplePlugin
+            // Call the public function that was defined in SwiftUIBridge
             // inside UnityFramework
             CallCSharpCallback("appeared")
         }
@@ -32,6 +29,6 @@ struct HelloWorldContentView: View {
 }
 
 #Preview(windowStyle: .automatic) {
-    HelloWorldContentView()
+    DebugMenuContentView()
 }
 

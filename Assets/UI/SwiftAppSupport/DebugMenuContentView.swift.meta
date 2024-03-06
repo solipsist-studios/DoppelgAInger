@@ -75,7 +75,7 @@ PluginImporter:
       enabled: 1
       settings:
         AddToEmbeddedBinaries: false
-        CPU: ARM64
+        CPU: AnyCPU
         CompileFlags: 
         FrameworkDependencies: 
   - first:

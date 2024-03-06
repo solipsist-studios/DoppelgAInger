@@ -43,13 +43,13 @@ import SwiftUI
 // many, as appropriate for your application.
 //
 // Declared in C# as: delegate void CallbackDelegate(string command);
-typealias CallbackDelegateType = @convention(c) (UnsafePointer<CChar>) -> Void
+typealias SwiftCallbackDelegateType = @convention(c) (UnsafePointer<CChar>) -> Void
 
-var sCallbackDelegate: CallbackDelegateType? = nil
+var sCallbackDelegate: SwiftCallbackDelegateType? = nil
 
-// Declared in C# as: static extern void SetNativeCallback(CallbackDelegate callback);
-@_cdecl("SetNativeCallback")
-func setNativeCallback(_ delegate: CallbackDelegateType)
+// Declared in C# as: static extern void SetSwiftCallback(CallbackDelegate callback);
+@_cdecl("SetSwiftCallback")
+func setSwiftCallback(_ delegate: SwiftCallbackDelegateType)
 {
     print("############ SET NATIVE CALLBACK")
     sCallbackDelegate = delegate
@@ -68,9 +68,9 @@ public func CallCSharpCallback(_ str: String)
     }
 }
 
-// Declared in C# as: static extern void OpenSwiftUIWindow(string name);
-@_cdecl("OpenSwiftUIWindow")
-func openSwiftUIWindow(_ cname: UnsafePointer<CChar>)
+// Declared in C# as: static extern void OpenDebugWindow(string name);
+@_cdecl("OpenDebugWindow")
+func openDebugWindow(_ cname: UnsafePointer<CChar>)
 {
     let openWindow = EnvironmentValues().openWindow
 
@@ -79,9 +79,9 @@ func openSwiftUIWindow(_ cname: UnsafePointer<CChar>)
     openWindow(id: name)
 }
 
-// Declared in C# as: static extern void CloseSwiftUIWindow(string name);
-@_cdecl("CloseSwiftUIWindow")
-func closeSwiftUIWindow(_ cname: UnsafePointer<CChar>)
+// Declared in C# as: static extern void CloseDebugWindow(string name);
+@_cdecl("CloseDebugWindow")
+func closeDebugWindow(_ cname: UnsafePointer<CChar>)
 {
     let dismissWindow = EnvironmentValues().dismissWindow
 

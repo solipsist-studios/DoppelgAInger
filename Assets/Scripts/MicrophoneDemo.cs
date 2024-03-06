@@ -3,12 +3,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Whisper;
 using Whisper.Utils;
 using Button = UnityEngine.UI.Button;
 using Toggle = UnityEngine.UI.Toggle;
-using VRMViewer;
 
-namespace Whisper.Samples
+namespace Doppelgainger
 {
     /// <summary>
     /// Record audio clip from microphone and make a transcription.

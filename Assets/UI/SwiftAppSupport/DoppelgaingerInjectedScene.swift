@@ -8,10 +8,10 @@ import SwiftUI
 struct DoppelgaingerInjectedScene {
     @SceneBuilder
     static var scene: some Scene {
-        WindowGroup(id: "HelloWorld") {
+        WindowGroup(id: "DebugMenu") {
             // The sample defines a custom view, but you can also put your entire window's
             // structure here as you can with SwiftUI.
-            HelloWorldContentView()
+            DebugMenuContentView()
         }.defaultSize(width: 400.0, height: 400.0)
 
         // You can create multiple WindowGroups here for different wnidows;
