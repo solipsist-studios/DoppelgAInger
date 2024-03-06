@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: N00_000_00_EyeHighlight_00_EYE (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: 1ffb84b1801074ef3a10aabb04235212,
+  m_Shader: {fileID: -6465566751694194690, guid: 7f7cb649f1ab84e65be9bf2a547029e4,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,6 +41,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTexture:
         m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -86,7 +90,10 @@ Material:
     - Rim_Power: 5
     - Toon_Ramp_Offset: 0.5
     - Toon_Ramp_Smoothness: 0
+    - _AlphaCutoff: 0.2
     - _AlphaMode: 2
+    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DoubleSided: 1
@@ -98,6 +105,7 @@ Material:
     - _M_EditMode: 1
     - _M_SrcBlend: 5
     - _M_ZWrite: 0
+    - _MaskOperation: 0
     - _OutlineLightingMix: 1
     - _OutlineWidth: 0
     - _OutlineWidthMode: 0
@@ -123,6 +131,19 @@ Material:
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadeColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &5748337082683931245
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
 --- !u!114 &5916995766454732331
 MonoBehaviour:
   m_ObjectHideFlags: 11
