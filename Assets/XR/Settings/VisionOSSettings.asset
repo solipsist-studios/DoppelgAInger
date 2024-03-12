@@ -16,6 +16,6 @@ MonoBehaviour:
   m_HandsTrackingUsageDescription: Hands are necessary
   m_WorldSensingUsageDescription: Understand the environment
   m_RuntimeSettings: {fileID: 11400000, guid: 060aad6d66c11462d88d6eeb21d40142, type: 2}
-  m_UpperLimbVisibility: 0
+  m_UpperLimbVisibility: 1
   m_FoveatedRendering: 1
   m_IL2CPPLargeExeWorkaround: 0
