@@ -62,7 +62,7 @@ public class SwiftUIManager : MonoBehaviour
         }
         else if (command == "next avatar")
         {
-            //self.Spawn(Color.green);
+            StateManager.Instance.NextAvatar();
         }
     }
 

@@ -1,0 +1,92 @@
+fileFormatVersion: 2
+guid: 6ad9099aeb8414c4d82e9779428f12d1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_body_material
+    second: {fileID: 2100000, guid: 470f6759257f34c59ae8c6cea6b0c59a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_hair_0_material
+    second: {fileID: 2100000, guid: 6621a07b491b2418aa17dae3d89f5a61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_hair_1_material
+    second: {fileID: 2100000, guid: f9a7d6b8f138e43b287164ac90617898, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_look_0_material
+    second: {fileID: 2100000, guid: 00b243f050d3e4370a54ca6f1b4ce521, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_shoes_0_material
+    second: {fileID: 2100000, guid: 441f050d153f34e208c32030be7bc2e1, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Casual_1_sha_ARM.standard
+    second: {fileID: 2800000, guid: e4b9322825a134c219195c4aebccc5c9, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Casual_1_sha_BaseColore
+    second: {fileID: 2800000, guid: 7897a461504a44b47a906e7b35bc2070, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Casual_1_sha_Normal.normal
+    second: {fileID: 2800000, guid: 4ee62214a8e2f4115884e749de299d38, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Image_2.normal
+    second: {fileID: 2800000, guid: dd199136a71b34163aacac06aee25f05, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: NRM.normal
+    second: {fileID: 2800000, guid: 24283f22667da40fcb4dc1f86e0cf45f, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Sneekers_BC
+    second: {fileID: 2800000, guid: d90c953a8ef6c457f852d605d818a3f3, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Sneekers_NRM.normal
+    second: {fileID: 2800000, guid: 3d7d5b37f219348a988a6a47b363d3b4, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Sneekers_ORM.standard
+    second: {fileID: 2800000, guid: f6d4f618b04714eedb2a378ddbaff693, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_0.standard
+    second: {fileID: 2800000, guid: e795f0c5b84624a7ba54f636bef35a55, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_1
+    second: {fileID: 2800000, guid: 14754e7f595424b1d8831f51df78dbfe, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_3
+    second: {fileID: 2800000, guid: 83c5d6d56549044f6bfbbb341f27a097, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: cc45016b844e7624dae3aec10fb443ea, type: 3}
+  reverseAxis: 0
+  renderPipeline: 1

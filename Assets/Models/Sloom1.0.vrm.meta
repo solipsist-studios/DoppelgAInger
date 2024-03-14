@@ -1,0 +1,97 @@
+fileFormatVersion: 2
+guid: b9114739339d04c8c857a780a3ea4c44
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_MAT
+    second: {fileID: 2100000, guid: 47feb3aa1356e4a75b3fee14da6f6cb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dripping01Toon_MAT
+    second: {fileID: 2100000, guid: 4d0a93fd107e644bca10990d918451c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dripping02Toon_MAT
+    second: {fileID: 2100000, guid: 25ff4ca8c63294952a0c8612c217b86a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadMushroom01Toon_MAT
+    second: {fileID: 2100000, guid: 327b986794f2e40f48275055798e406a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadMushroom02Toon_MAT
+    second: {fileID: 2100000, guid: c32051eace0164d05adaed339befa24a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MushroomToon_MAT
+    second: {fileID: 2100000, guid: 62f1aaae7426b46478b659c192aaee92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SlimebodyToon_MAT
+    second: {fileID: 2100000, guid: 8e6ea1f3c1234433e8defe8b70ba11b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhiteEye_MAT
+    second: {fileID: 2100000, guid: d1f3ed30a0d5f4b9c88f4ff036e5a86d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WrapSlimeToon_MAT
+    second: {fileID: 2100000, guid: 2ac9ef4f9fbf246be9e288fe382addbb, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Dripping01Texture
+    second: {fileID: 2800000, guid: c222ec7098bab48629fcbedd6106bdde, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Dripping02Texture
+    second: {fileID: 2800000, guid: e19aab121fd1d4731aa91e163acee4d1, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: HeadMushroom01Texture
+    second: {fileID: 2800000, guid: 007b2bace9715432e8165c51d6fc0038, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: HeadMushroom02Texture
+    second: {fileID: 2800000, guid: 2e17ed0a80c604b9cabea0bd6c509ac0, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: MushroomTexture
+    second: {fileID: 2800000, guid: a085d0dabca9544859f98c2305783429, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: SlimeBodyTexture
+    second: {fileID: 2800000, guid: a5a116e60e0584e02bb93a5b817d835c, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: WrapSlimeTexture
+    second: {fileID: 2800000, guid: 22dd147bf5abf4b7e95be56e46f8546f, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: thumbnail__VRM10
+    second: {fileID: 2800000, guid: 6c914fb2597d0460c9e62155567ecda0, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f66ead3390398f443aa127b741826ad9, type: 3}
+  MigrateToVrm1: 1
+  RenderPipeline: 1
