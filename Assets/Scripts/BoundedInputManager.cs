@@ -42,7 +42,8 @@ namespace PolySpatial.Template
                 var primaryTouchData = EnhancedSpatialPointerSupport.GetPointerState(activeTouches[0]);
                 var touchPhase = activeTouches[0].phase;
 
-                if (touchPhase == TouchPhase.Began && primaryTouchData.Kind == SpatialPointerKind.IndirectPinch || primaryTouchData.Kind == SpatialPointerKind.DirectPinch)
+                if (touchPhase == TouchPhase.Began && primaryTouchData.Kind == SpatialPointerKind.IndirectPinch ||
+                                                      primaryTouchData.Kind == SpatialPointerKind.DirectPinch)
                 {
                     if (primaryTouchData.targetObject != null)
                     {
