@@ -8,18 +8,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: N00_000_00_EyeHighlight_00_EYE (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: 7f7cb649f1ab84e65be9bf2a547029e4,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
+  - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -32,12 +35,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: ee200726b39774486ae4150a3180e682, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 94b815f31b53b407793b3929e70e17b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -68,6 +75,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: bb8788af1e7fd4b0ebc66a4eb61273a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UvAnimMaskTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -90,14 +101,23 @@ Material:
     - Rim_Power: 5
     - Toon_Ramp_Offset: 0.5
     - Toon_Ramp_Smoothness: 0
+    - _AlphaClip: 0
     - _AlphaCutoff: 0.2
     - _AlphaMode: 2
+    - _AlphaToMask: 0
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cull: 2
+    - _Cutoff: 0.019
     - _DoubleSided: 1
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _GiEqualization: 0.9
+    - _GlossinessSource: 0
     - _M_AlphaToMask: 0
     - _M_CullMode: 0
     - _M_DebugMode: 0
@@ -111,25 +131,38 @@ Material:
     - _OutlineWidthMode: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _RenderQueueOffset: -2
     - _RimFresnelPower: 100
     - _RimLift: 0.1
     - _RimLightingMix: 1
+    - _SampleGI: 0
     - _ShadingShiftFactor: 0.71
     - _ShadingShiftTexScale: 1
     - _ShadingToonyFactor: 0.90999997
+    - _Shininess: 0
+    - _Smoothness: 0.5
+    - _SmoothnessSource: 0
+    - _SpecSource: 0
+    - _SpecularHighlights: 0
+    - _SrcBlend: 5
+    - _SrcBlendAlpha: 1
+    - _Surface: 1
     - _TransparentWithZWrite: 0
     - _UvAnimRotationSpeed: 0
     - _UvAnimScrollXSpeed: 0
     - _UvAnimScrollYSpeed: 0
+    - _ZWrite: 0
     m_Colors:
     - Toon_Ramp_Tint: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatcapColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0.27450976, g: 0.09019602, b: 0.12549013, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!114 &5748337082683931245
 MonoBehaviour:

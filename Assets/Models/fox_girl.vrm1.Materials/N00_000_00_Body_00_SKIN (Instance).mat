@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Mask_R_Emission:
-        m_Texture: {fileID: 2800000, guid: 020fe44e73e6842fa81b307dd70d157e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -42,6 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 020fe44e73e6842fa81b307dd70d157e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTexture:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatcapTex:
@@ -86,7 +90,10 @@ Material:
     - Rim_Power: 5
     - Toon_Ramp_Offset: 0.5
     - Toon_Ramp_Smoothness: 0
+    - _AlphaCutoff: 0.2
     - _AlphaMode: 1
+    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DoubleSided: 0
@@ -98,6 +105,7 @@ Material:
     - _M_EditMode: 1
     - _M_SrcBlend: 1
     - _M_ZWrite: 1
+    - _MaskOperation: 0
     - _OutlineLightingMix: 0
     - _OutlineWidth: 0.0008
     - _OutlineWidthMode: 1

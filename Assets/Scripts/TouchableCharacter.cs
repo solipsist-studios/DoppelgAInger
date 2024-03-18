@@ -10,49 +10,49 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
-public class TouchableCharacter : XRGrabInteractable
+public class TouchableCharacter : MonoBehaviour
 {
     private IXRSelectInteractor interactor;
 
     public GameObject HandCollider;
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        selectEntered.AddListener(StartGrab);
-        selectExited.AddListener(EndGrab);
-    }
+    //protected override void OnEnable()
+    //{
+    //    base.OnEnable();
+    //    selectEntered.AddListener(StartGrab);
+    //    selectExited.AddListener(EndGrab);
+    //}
 
-    protected override void OnDisable()
-    {
-        selectEntered.RemoveListener(StartGrab);
-        selectExited.RemoveListener(EndGrab);
-        base.OnDisable();
-    }
+    //protected override void OnDisable()
+    //{
+    //    selectEntered.RemoveListener(StartGrab);
+    //    selectExited.RemoveListener(EndGrab);
+    //    base.OnDisable();
+    //}
 
-    private void StartGrab(SelectEnterEventArgs args)
-    {
-        interactor = args.interactorObject;
+    //private void StartGrab(SelectEnterEventArgs args)
+    //{
+    //    interactor = args.interactorObject;
 
-        UpdateCollider();
-    }
+    //    UpdateCollider();
+    //}
 
-    private void EndGrab(SelectExitEventArgs args)
-    {
-        interactor = null;
-    }
+    //private void EndGrab(SelectExitEventArgs args)
+    //{
+    //    interactor = null;
+    //}
 
-    private void UpdateCollider()
-    {
-        var interactorTransform = interactor.GetAttachTransform(this);
+    //private void UpdateCollider()
+    //{
+    //    var interactorTransform = interactor.GetAttachTransform(this);
 
-        if (interactorTransform == null || HandCollider == null)
-        {
-            return;
-        }
+    //    if (interactorTransform == null || HandCollider == null)
+    //    {
+    //        return;
+    //    }
 
-        HandCollider.gameObject.transform.position = interactorTransform.position;
-    }
+    //    HandCollider.gameObject.transform.position = interactorTransform.position;
+    //}
 
     private void Update()
     {
@@ -72,7 +72,9 @@ public class TouchableCharacter : XRGrabInteractable
                     //{
                     //    renderer.enabled = true; //transform.SetPositionAndRotation(primaryTouchData.interactionPosition, primaryTouchData.inputDeviceRotation);
                     //}
-                        
+
+                    HandCollider.transform.SetPositionAndRotation(primaryTouchData.interactionPosition, primaryTouchData.inputDeviceRotation);
+                    HandCollider.transform.Rotate(Vector3.up, 90); // The device rotation is offset from the mesh 90 degrees.
                 }
             }
             else if (activeTouches[0].phase == TouchPhase.Moved)
