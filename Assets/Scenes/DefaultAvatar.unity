@@ -225,8 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Avatars:
-  - {fileID: 2077730579}
   - {fileID: 811489479}
+  - {fileID: 2077730579}
   - {fileID: 1885565437}
   - {fileID: 736225955}
 --- !u!4 &56303016
@@ -3062,7 +3062,7 @@ PrefabInstance:
     - target: {fileID: -1728013695380148634, guid: 462de0bf8640849a39dd0bebbc38704f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 287040596127624823, guid: 462de0bf8640849a39dd0bebbc38704f,
         type: 3}
@@ -4962,7 +4962,7 @@ PrefabInstance:
     - target: {fileID: -9202605092671148497, guid: 6ad9099aeb8414c4d82e9779428f12d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8725804423329369109, guid: 6ad9099aeb8414c4d82e9779428f12d1,
         type: 3}
