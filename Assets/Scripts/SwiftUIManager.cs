@@ -56,9 +56,9 @@ public class SwiftUIManager : MonoBehaviour
             return;
         }
 
-        if (command == "play sound")
+        if (command == "dance")
         {
-            //self.Spawn(Color.red);
+            StateManager.Instance.Dance();
         }
         else if (command == "next avatar")
         {

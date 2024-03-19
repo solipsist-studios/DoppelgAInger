@@ -13,8 +13,8 @@ struct DebugMenuContentView: View {
     var body: some View {
         VStack {
             Text("Main Menu")
-            Button("Play Sound") {
-                CallCSharpCallback("play sound")
+            Button("Dance") {
+                CallCSharpCallback("dance")
             }
             Button("Switch Avatar") {
                 CallCSharpCallback("next avatar")

@@ -74,4 +74,13 @@ public class StateManager : MonoBehaviour
 
         SelectAvatar(index);
     }
+
+    public void Dance()
+    {
+        if (Avatars[curAvatarIdx].TryGetComponent<Animator>(out Animator avatarAnimator))
+        {
+            avatarAnimator.SetFloat("DanceValue", Random.value);
+            avatarAnimator.SetTrigger("DanceTrigger");
+        }
+    }
 }

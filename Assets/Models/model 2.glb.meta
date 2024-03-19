@@ -4,6 +4,11 @@ ScriptedImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: IdleV4.2(maya_head)
+    second: {fileID: 7400000, guid: b1960715ec11e4dbeae6024b7af47f32, type: 2}
+  - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: avaturn_body_material
