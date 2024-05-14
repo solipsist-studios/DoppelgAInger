@@ -33,6 +33,41 @@
 import Foundation
 import SwiftUI
 
+public struct ChatMessage: Identifiable, Hashable {
+    public var id = UUID()
+    public var message: String
+    public var isCurrentUser: Bool
+
+    public static func == (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
+        return lhs.id == rhs.id && lhs.message == rhs.message
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(message)
+    }
+}
+
+public class MessageHistory: ObservableObject {
+    public static let shared = MessageHistory()
+    
+    @Published public var messages: [ChatMessage] = [
+        ChatMessage(message: "Hello!", isCurrentUser: false),
+        ChatMessage(message: "Hi! How are you?", isCurrentUser: true),
+        ChatMessage(message: "I'm great, thanks for asking. How about you?", isCurrentUser: false)
+    ]
+
+    public func append(message: String, isUserMessage: Bool) {
+        print("########### Number of messages: \(MessageHistory.shared.messages.count)")
+        
+        DispatchQueue.main.async {
+            let newMessage = ChatMessage(message: message, isCurrentUser: isUserMessage)
+            self.messages.append(newMessage)
+        }
+    }
+}
+
+
 // These methods are exported from Swift with an explicit C-style name using @_cdecl,
 // to match what DllImport expects. You will need to do appropriate conversion from
 // C-style argument types (including UnsafePointers and other friends) into Swift
@@ -45,32 +80,52 @@ import SwiftUI
 // Declared in C# as: delegate void CallbackDelegate(string command);
 typealias SwiftCallbackDelegateType = @convention(c) (UnsafePointer<CChar>) -> Void
 
-var sCallbackDelegate: SwiftCallbackDelegateType? = nil
+var sMenuOptionDelegate: SwiftCallbackDelegateType? = nil
+var sMessageDelegate: SwiftCallbackDelegateType? = nil
 
 // Declared in C# as: static extern void SetSwiftCallback(CallbackDelegate callback);
-@_cdecl("SetSwiftCallback")
-func setSwiftCallback(_ delegate: SwiftCallbackDelegateType)
+@_cdecl("SetSwiftMenuOptionCallback")
+func setSwiftMenuOptionCallback(_ delegate: SwiftCallbackDelegateType)
 {
-    print("############ SET NATIVE CALLBACK")
-    sCallbackDelegate = delegate
+    print("############ SET MENU OPTION CALLBACK")
+    sMenuOptionDelegate = delegate
+}
+
+// Declared in C# as: static extern void SetSwiftCallback(CallbackDelegate callback);
+@_cdecl("SetSwiftMessageCallback")
+func setSwiftMessageCallback(_ delegate: SwiftCallbackDelegateType)
+{
+    print("############ SET MESSAGE CALLBACK")
+    sMessageDelegate = delegate
 }
 
 // This is a function for your own use from the enclosing Unity-VisionOS app, to call the delegate
 // from your own windows/views (HelloWorldContentView uses this)
-public func CallCSharpCallback(_ str: String)
+public func CallMenuOptionCallback(_ str: String)
 {
-    if (sCallbackDelegate == nil) {
+    if (sMenuOptionDelegate == nil) {
         return
     }
 
     str.withCString {
-        sCallbackDelegate!($0)
+        sMenuOptionDelegate!($0)
     }
 }
 
-// Declared in C# as: static extern void OpenDebugWindow(string name);
-@_cdecl("OpenDebugWindow")
-func openDebugWindow(_ cname: UnsafePointer<CChar>)
+public func CallMessageCallback(_ str: String)
+{
+    if (sMessageDelegate == nil) {
+        return
+    }
+
+    str.withCString {
+        sMessageDelegate!($0)
+    }
+}
+
+// Declared in C# as: static extern void OpenSwiftWindow(string name);
+@_cdecl("OpenSwiftWindow")
+func openSwiftWindow(_ cname: UnsafePointer<CChar>)
 {
     let openWindow = EnvironmentValues().openWindow
 
@@ -79,9 +134,9 @@ func openDebugWindow(_ cname: UnsafePointer<CChar>)
     openWindow(id: name)
 }
 
-// Declared in C# as: static extern void CloseDebugWindow(string name);
-@_cdecl("CloseDebugWindow")
-func closeDebugWindow(_ cname: UnsafePointer<CChar>)
+// Declared in C# as: static extern void CloseSwiftWindow(string name);
+@_cdecl("CloseSwiftWindow")
+func closeSwiftWindow(_ cname: UnsafePointer<CChar>)
 {
     let dismissWindow = EnvironmentValues().dismissWindow
 
@@ -90,3 +145,19 @@ func closeDebugWindow(_ cname: UnsafePointer<CChar>)
     dismissWindow(id: name)
 }
 
+// Declared in C# as: static extern void ReceiveMessage(string message);
+@_cdecl("ReceiveSwiftMessage")
+func receiveMessage(_ cmessage: UnsafePointer<CChar>)
+{
+    let message = String(cString: cmessage)
+    //MessageHistory.shared.append(message: message, isUserMessage: false)
+    
+//    ForEach(MessageHistory.shared.messages) { message in
+//        print(message)
+//    }
+    
+    //let newMessage = ChatMessage(message: message, isCurrentUser: false)
+    MessageHistory.shared.append(message: message, isUserMessage: false)
+    
+    print("########## RECEIVED MESSAGE: \(message)")
+}

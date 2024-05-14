@@ -9,26 +9,30 @@ import Foundation
 import SwiftUI
 import UnityFramework
 
-struct DebugMenuContentView: View {
+struct MainMenuContentView: View {
+    @Environment(\.openWindow) private var openWindow
+    
     var body: some View {
         VStack {
             Text("Main Menu")
             Button("Dance") {
-                CallCSharpCallback("dance")
+                CallMenuOptionCallback("dance")
             }
             Button("Switch Avatar") {
-                CallCSharpCallback("next avatar")
+                CallMenuOptionCallback("next avatar")
+            }
+            Button("Chat View") {
+                openWindow(id: "ChatWindow")
             }
         }
         .onAppear {
             // Call the public function that was defined in SwiftUIBridge
             // inside UnityFramework
-            CallCSharpCallback("appeared")
+            CallMenuOptionCallback("appeared")
         }
     }
 }
 
 #Preview(windowStyle: .automatic) {
-    DebugMenuContentView()
+    MainMenuContentView()
 }
-

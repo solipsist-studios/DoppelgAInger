@@ -2,57 +2,76 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AOT;
 using UnityEngine;
+using UnityEngine.Events;
 
 // This is a driver MonoBehaviour that connects to SwiftUISamplePlugin.swift via
 // C# DllImport. See SwiftUISamplePlugin.swift for more information.
 public class SwiftUIManager : MonoBehaviour
 {
-    public AudioSource audioSource;
+    private static SwiftUIManager instance = null;
 
-    bool m_SwiftUIWindowOpen = false;
+    private bool swiftUIWindowOpen = false;
+
+    private SwiftUIManager()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Duplicate instance of SwiftUIManager detected!");
+        }
+
+        instance = this;
+    }
+
+    public static SwiftUIManager Instance { get { return instance; } }
+
+    public UnityEvent<string> OnMessageReceived;
 
     void OnEnable()
     {
-        SetSwiftCallback(CallbackFromSwift);
-        OpenDebugWindow("DebugMenu");
+        SetSwiftMenuOptionCallback(SwiftMenuCallback);
+        SetSwiftMessageCallback(SwiftMessageCallback);
+        OpenSwiftWindow("MainMenu");
+        OpenSwiftWindow("ChatWindow");
     }
 
     void OnDisable()
     {
-        SetSwiftCallback(null);
-        CloseDebugWindow("DebugMenu");
+        SetSwiftMenuOptionCallback(null);
+        SetSwiftMessageCallback(null);
+        CloseSwiftWindow("MainMenu");
+        CloseSwiftWindow("ChatWindow");
     }
 
-    void WasPressed(string buttonText, MeshRenderer meshrenderer)
+    //void WasPressed(string buttonText, MeshRenderer meshrenderer)
+    //{
+    //    if (m_SwiftUIWindowOpen)
+    //    {
+    //        CloseDebugWindow("MainMenu");
+    //        m_SwiftUIWindowOpen = false;
+    //    }
+    //    else
+    //    {
+    //        OpenDebugWindow("MainMenu");
+    //        m_SwiftUIWindowOpen = true;
+    //    }
+    //}
+
+    public void AppendMessage(string message)
     {
-        if (m_SwiftUIWindowOpen)
-        {
-            CloseDebugWindow("DebugMenu");
-            m_SwiftUIWindowOpen = false;
-        }
-        else
-        {
-            OpenDebugWindow("DebugMenu");
-            m_SwiftUIWindowOpen = true;
-        }
+        ReceiveSwiftMessage(message);
     }
 
-    delegate void CallbackDelegate(string command);
+    delegate void StringCallbackDelegate(string str);
 
     // This attribute is required for methods that are going to be called from native code
     // via a function pointer.
-    [MonoPInvokeCallback(typeof(CallbackDelegate))]
-    static void CallbackFromSwift(string command)
+    [MonoPInvokeCallback(typeof(StringCallbackDelegate))]
+    static void SwiftMenuCallback(string command)
     {
         Debug.Log("Callback from swift: " + command);
 
-        // This could be stored in a static field or a singleton.
-        // If you need to deal with multiple windows and need to distinguish between them,
-        // you could add an ID to this callback and use that to distinguish windows.
-        var self = Object.FindFirstObjectByType<SwiftUIManager>();
-
         if (command == "closed") {
-            self.m_SwiftUIWindowOpen = false;
+            Instance.swiftUIWindowOpen = false;
             return;
         }
 
@@ -66,19 +85,35 @@ public class SwiftUIManager : MonoBehaviour
         }
     }
 
-    #if UNITY_VISIONOS && !UNITY_EDITOR
+    [MonoPInvokeCallback(typeof(StringCallbackDelegate))]
+    static void SwiftMessageCallback(string message)
+    {
+        Debug.Log(message);
+
+        Instance.OnMessageReceived?.Invoke(message);
+    }
+
+#if UNITY_VISIONOS && !UNITY_EDITOR
     [DllImport("__Internal")]
-    static extern void SetSwiftCallback(CallbackDelegate callback);
+    static extern void SetSwiftMenuOptionCallback(StringCallbackDelegate callback);
 
     [DllImport("__Internal")]
-    static extern void OpenDebugWindow(string name);
+    static extern void SetSwiftMessageCallback(StringCallbackDelegate callback);
 
     [DllImport("__Internal")]
-    static extern void CloseDebugWindow(string name);
-    #else
-    static void SetSwiftCallback(CallbackDelegate callback) {}
-    static void OpenDebugWindow(string name) {}
-    static void CloseDebugWindow(string name) {}
-    #endif
+    static extern void OpenSwiftWindow(string name);
+
+    [DllImport("__Internal")]
+    static extern void CloseSwiftWindow(string name);
+
+    [DllImport("__Internal")]
+    static extern void ReceiveSwiftMessage(string message);
+#else
+    static void SetSwiftMenuOptionCallback(StringCallbackDelegate callback) {}
+    static void SetSwiftMessageCallback(StringCallbackDelegate callback) { }
+    static void OpenSwiftWindow(string name) {}
+    static void CloseSwiftWindow(string name) {}
+    static void ReceiveSwiftMessage(string message) { }
+#endif
 
 }

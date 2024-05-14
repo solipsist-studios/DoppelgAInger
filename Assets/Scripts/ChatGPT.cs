@@ -15,17 +15,10 @@ namespace Doppelgainger
 
     public class ChatGPT : MonoBehaviour
     {
-        [SerializeField] private TMP_InputField inputField;
-        //[SerializeField] private Button button;
-        [SerializeField] private ScrollRect scroll;
-        
-        [SerializeField] private RectTransform sent;
-        [SerializeField] private RectTransform received;
-
         private float height;
 
         #region secrets
-        private OpenAIApi openai = new OpenAIApi("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");
+        private OpenAIApi openai = new OpenAIApi("");
         #endregion
 
         private List<ChatMessage> messages = new List<ChatMessage>();
@@ -39,25 +32,10 @@ namespace Doppelgainger
             //button.onClick.AddListener(SendReply);
         }
 
-        private void AppendMessage(ChatMessage message)
-        {
-            scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
-
-            var item = Instantiate(message.Role == "user" ? sent : received, scroll.content);
-            var textMesh = item.GetComponentInChildren<TMP_Text>();//item.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-            textMesh.text = message.Content;
-
-            item.anchoredPosition = new Vector2(0, -height);
-            LayoutRebuilder.ForceRebuildLayoutImmediate(item);
-            height += item.sizeDelta.y;
-            scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
-            scroll.verticalNormalizedPosition = 0;
-        }
-
-        public async void SendReply()
-        {
-            SendReply(inputField.text);
-        }
+        //public async void SendReply()
+        //{
+        //    SendReply(inputField.text);
+        //}
 
         public async void SendReply(string messageText)
         {
@@ -67,16 +45,12 @@ namespace Doppelgainger
                 Content = messageText
             };
 
-            AppendMessage(newMessage);
+            // Message appended in SwiftUI
 
-            if (messages.Count == 0) newMessage.Content = prompt + "\n" + inputField.text; 
+            if (messages.Count == 0) newMessage.Content = prompt + "\n" + messageText; 
             
             messages.Add(newMessage);
-            
-            //button.enabled = false;
-            inputField.text = "";
-            inputField.enabled = false;
-            
+                       
             // Complete the instruction
             var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
@@ -90,20 +64,14 @@ namespace Doppelgainger
                 message.Content = message.Content.Trim();
                 
                 messages.Add(message);
-                AppendMessage(message);
 
-                if (this.OnChatMessageReceived != null)
-                {
-                    OnChatMessageReceived.Invoke(message.Content);
-                }
+                // Append message in SwiftUI
+                OnChatMessageReceived?.Invoke(message.Content);
             }
             else
             {
                 Debug.LogWarning("No text was generated from this prompt.");
             }
-
-            //button.enabled = true;
-            inputField.enabled = true;
         }
     }
 }

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/XR Hands/1.3.0/HandVisualizer/HandVisualizer.unity
     guid: ab7acf0d9677fbe4db51bc36647d4fcb
+  - enabled: 0
+    path: Assets/Scenes/NSFWAvatar.unity
+    guid: 36739c875e9634311b7c80468edc6c0d
   m_configObjects:
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: 18d3f188cde6a4f769976956991576d7,
       type: 2}

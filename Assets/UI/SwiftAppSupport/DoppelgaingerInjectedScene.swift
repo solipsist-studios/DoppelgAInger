@@ -4,14 +4,21 @@
 
 import Foundation
 import SwiftUI
+import UnityFramework
 
 struct DoppelgaingerInjectedScene {
     @SceneBuilder
     static var scene: some Scene {
-        WindowGroup(id: "DebugMenu") {
+        WindowGroup(id: "MainMenu") {
             // The sample defines a custom view, but you can also put your entire window's
             // structure here as you can with SwiftUI.
-            DebugMenuContentView()
+            MainMenuContentView()
+                .environmentObject(MessageHistory.shared)
+        }.defaultSize(width: 400.0, height: 400.0)
+        
+        WindowGroup(id: "ChatWindow") {
+            ChatView()
+                .environmentObject(MessageHistory.shared)
         }.defaultSize(width: 400.0, height: 400.0)
 
         // You can create multiple WindowGroups here for different wnidows;
