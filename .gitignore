@@ -75,3 +75,7 @@ crashlytics-build.properties
 
 # User preferences and secrets
 /[Aa]ssets/[Rr]esources/
+
+# Mac stuff
+/.DS_Store/
+./Assets/.DS_Store/
