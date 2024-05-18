@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378fb4eec0f59ac4c95c0d5b227aa85e, type: 3}
-  m_Name: SimulationEnvironmentAssetsManager
+  m_Script: {fileID: 11500000, guid: 3ae0c8c0db9ca489cb8c74cb83364aed, type: 3}
+  m_Name: PolySpatialXRLoader
   m_EditorClassIdentifier: 
-  m_EnvironmentPrefabPaths: []
-  m_FallbackAtEndOfList: 0

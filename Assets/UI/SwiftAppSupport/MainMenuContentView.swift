@@ -24,6 +24,9 @@ struct MainMenuContentView: View {
             Button("Chat View") {
                 openWindow(id: "ChatWindow")
             }
+            Button("Play Audio") {
+                CallMenuOptionCallback("test audio")
+            }
         }
         .onAppear {
             // Call the public function that was defined in SwiftUIBridge

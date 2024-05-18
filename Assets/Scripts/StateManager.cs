@@ -17,7 +17,9 @@ public class StateManager : MonoBehaviour
     }
 
     private int curAvatarIdx = 0;
-    
+
+    public AudioSource audioSource;
+
     public List<GameObject> Avatars = new List<GameObject>();
 
     private StateManager()

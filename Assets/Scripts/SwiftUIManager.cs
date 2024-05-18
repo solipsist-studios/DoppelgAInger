@@ -83,6 +83,14 @@ public class SwiftUIManager : MonoBehaviour
         {
             StateManager.Instance.NextAvatar();
         }
+        else if (command == "test audio")
+        {
+            if (StateManager.Instance != null && StateManager.Instance.audioSource != null)
+            {
+                Debug.Log("Playing test audio");
+                StateManager.Instance.audioSource.Play();
+            }
+        }
     }
 
     [MonoPInvokeCallback(typeof(StringCallbackDelegate))]
