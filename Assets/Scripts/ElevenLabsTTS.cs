@@ -27,6 +27,9 @@ namespace Doppelgainger
         public AudioSource audioSource;
         public void Speak(string message)
         {
+            Debug.Log("[ElevenLabs] Processessing message:");
+            Debug.Log(message);
+
             StartCoroutine(GenerateAndStreamAudio(message));
         }
 
@@ -54,16 +57,9 @@ namespace Doppelgainger
             {
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.method = "POST";
-                //request.downloadHandler = new DownloadHandlerAudioClip(new Uri(url), AudioType.MPEG);
+
                 request.SetRequestHeader("Content-Type", "application/json");
                 request.SetRequestHeader("xi-api-key", config.apiKey);
-
-                //string filename = string.Concat(Time.time.ToString(), ".wav");
-                //var filepath = Path.Combine(Application.persistentDataPath + "/LipSync", filename); //This is probably the line causing problems. When I was building for desktop I used Application.dataPath btw.
-                //Debug.Log(".WAV will be saved here: " + filepath);
-
-                //DownloadHandlerFile dhf = new DownloadHandlerFile(filepath);
-                //request.downloadHandler = dhf;
 
                 yield return request.SendWebRequest();
 
@@ -78,26 +74,13 @@ namespace Doppelgainger
                     yield break;
                 }
 
-                //if (request.downloadedBytes == 0)
-                //{
-                //    Debug.LogError("Error: No downloaded data. Aborting");
-                //    yield break;
-                //}
-
-                //byte[] buffer = new byte[request.downloadedBytes];
-                //FileStream fs = new FileStream(filepath, FileMode.Open);
-                //fs.Read(buffer, 0, buffer.Length);
-
-                //AudioClip audioClip = AudioClip.Create("voice", (int)request.downloadedBytes, 1, 44100, false);
-
                 AudioClip audioClip = DownloadHandlerAudioClip.GetContent(request);
 
                 if (audioClip != null && audioClip.length != 0)
                 {
-                    //Save(Time.time.ToString(), audioClip);
-
                     audioSource.clip = audioClip;
                     PlayAudio(audioClip);
+
                     // Wait for the audio clip to finish playing
                     yield return new WaitForSeconds(audioClip.length);
                 }
@@ -105,16 +88,13 @@ namespace Doppelgainger
                 {
                     // the audio is null so download the audio again
                     Debug.LogError("Error: No audio downloaded. Aborting.");
-                    //yield return StartCoroutine(GenerateAndStreamAudio(text));
+
                     yield break;
                 }
 
-
                 // Wait for the audio clip to finish playing
                 yield return new WaitForSeconds(audioClip.length);
-
             }
-
         }
 
         public static bool Save(string filename, AudioClip clip)
