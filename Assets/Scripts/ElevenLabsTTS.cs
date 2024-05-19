@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 using System;
 using System.IO;
@@ -25,6 +26,9 @@ namespace Doppelgainger
     {
         public ElevenLabsConfig config;
         public AudioSource audioSource;
+
+        public UnityEvent OnFinishedSpeaking;
+
         public void Speak(string message)
         {
             Debug.Log("[ElevenLabs] Processessing message:");
@@ -92,8 +96,7 @@ namespace Doppelgainger
                     yield break;
                 }
 
-                // Wait for the audio clip to finish playing
-                yield return new WaitForSeconds(audioClip.length);
+                OnFinishedSpeaking?.Invoke();
             }
         }
 
