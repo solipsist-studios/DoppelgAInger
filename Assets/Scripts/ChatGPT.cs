@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using TMPro;
 
@@ -15,27 +16,133 @@ namespace Doppelgainger
 
     public class ChatGPT : MonoBehaviour
     {
-        private float height;
-
-        #region secrets
-        private OpenAIApi openai = new OpenAIApi("");
-        #endregion
+        private OpenAIApi openai;
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        private string prompt =
-            "Jeff is a software engineer and spatial computing startup founder named.  He formerly worked at Microsoft on XBox and then Hololens.  And then at AWS as a development manager for App Stream 2.  Now, at Solipsist Studios, Jeff is building NPCs as a service for AR, powered by AI.  You are roleplaying as NPC Jeff, Jeff's AI digital twin.  You will respond to being called Jeff, and answer all questions as Jeff. You may only acknowledge being an NPC or AI if asked about that directly.";
+
+        [SerializeField] private ChatGPTConfig config;
+        [SerializeField] private TextAsset charCard;
 
         public ChatEvent OnChatMessageReceived;
 
         private void Start()
         {
-            //button.onClick.AddListener(SendReply);
-        }
+            // TODO: Support v1 char cards
+            this.openai = new OpenAIApi(this.config.apiKey, this.config.organizationID);
 
-        //public async void SendReply()
-        //{
-        //    SendReply(inputField.text);
-        //}
+            // Parse character card
+            if (charCard != null)
+            {
+                var jsonChar = JsonUtility.FromJson<CharacterCard>(charCard.text);
+
+                // Debug
+                CharacterCard fooChar = new CharacterCard()
+                {
+                    spec = "chara_card_v2",
+                    spec_version = "2.0",
+                    data = new CharacterData()
+                    {
+                        name = "Foo",
+                        description = "Test personality",
+                        personality = "none",
+                        first_mes = "Hello world"
+                    }
+                };
+                string testJson = JsonUtility.ToJson(fooChar);
+
+                // Add system prompt if specified
+                if (!String.IsNullOrEmpty(this.config.systemPrompt))
+                {
+                    var systemMessage = new ChatMessage()
+                    {
+                        Role = "system",
+                        Content = this.config.systemPrompt
+                            .Replace("{{user}}", this.config.userName)
+                            .Replace("{{char}}", jsonChar.data.name)
+                    };
+
+                    messages.Add(systemMessage);
+                }
+
+                // Add description
+                if (!String.IsNullOrEmpty(jsonChar.data.description))
+                {
+                    var descriptionMessage = new ChatMessage()
+                    {
+                        Role = "system",
+                        Content = jsonChar.data.description
+                            .Replace('\r', '\0')
+                            .Replace("{{user}}", this.config.userName)
+                            .Replace("{{char}}", jsonChar.data.name)
+                    };
+
+                    messages.Add(descriptionMessage);
+                }
+
+                // Add personality
+                if (!String.IsNullOrEmpty(jsonChar.data.personality))
+                {
+                    var personalityMessage = new ChatMessage()
+                    {
+                        Role = "system",
+                        Content = this.config.personalityString
+                            .Replace("{{char}}", jsonChar.data.name)
+                            + jsonChar.data.personality
+                    };
+
+                    messages.Add(personalityMessage);
+                }
+
+                // Add scenario
+                if (!String.IsNullOrEmpty(jsonChar.data.scenario))
+                {
+                    var scenarioMessage = new ChatMessage()
+                    {
+                        Role = "system",
+                        Content = "Scenario: " +
+                            jsonChar.data.scenario
+                                .Replace("{{user}}", this.config.userName)
+                                .Replace("{{char}}", jsonChar.data.name)
+                    };
+
+                    messages.Add(scenarioMessage);
+                }
+
+                // Add example messages
+                
+
+
+    //            { role: 'system', content: '[Example Chat]' },
+    //{
+    //            role: 'system',
+    //  name: 'example_user',
+    //  content: 'Where are you from?'
+    //},
+    //{
+    //            role: 'system',
+    //  name: 'example_assistant',
+    //  content: "I've been around, but currently I'm residing in Montreal Canada. 🙂 \n" +
+    //    ' You?'
+    //},
+
+                // Add character's first message
+                if (!String.IsNullOrEmpty(jsonChar.data.first_mes))
+                {
+                    var firstMessage = new ChatMessage()
+                    {
+                        Role = "assistant",
+                        Content = jsonChar.data.first_mes
+                            .Replace("{{user}}", this.config.userName)
+                            .Replace("{{char}}", jsonChar.data.name)
+                    };
+
+                    messages.Add(firstMessage);
+
+                    // Do the UI things for handling messages
+                    OnChatMessageReceived?.Invoke(firstMessage.Content);
+                }
+            }
+        }
 
         public async void SendReply(string messageText)
         {
@@ -45,17 +152,14 @@ namespace Doppelgainger
                 Content = messageText
             };
 
-            // Message appended in SwiftUI
-
-            if (messages.Count == 0) newMessage.Content = prompt + "\n" + messageText; 
-            
             messages.Add(newMessage);
                        
             // Complete the instruction
             var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Model = "gpt-3.5-turbo-0613",
-                Messages = messages
+                Model = this.config.modelVersion,
+                Messages = messages,
+                Temperature = 0.2f 
             });
 
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)

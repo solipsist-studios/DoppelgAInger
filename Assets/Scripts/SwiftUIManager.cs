@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using AOT;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,8 +7,6 @@ using UnityEngine.Events;
 public class SwiftUIManager : MonoBehaviour
 {
     private static SwiftUIManager instance = null;
-
-    private bool swiftUIWindowOpen = false;
 
     private SwiftUIManager()
     {
@@ -42,20 +38,6 @@ public class SwiftUIManager : MonoBehaviour
         CloseSwiftWindow("ChatWindow");
     }
 
-    //void WasPressed(string buttonText, MeshRenderer meshrenderer)
-    //{
-    //    if (m_SwiftUIWindowOpen)
-    //    {
-    //        CloseDebugWindow("MainMenu");
-    //        m_SwiftUIWindowOpen = false;
-    //    }
-    //    else
-    //    {
-    //        OpenDebugWindow("MainMenu");
-    //        m_SwiftUIWindowOpen = true;
-    //    }
-    //}
-
     public void AppendMessage(string message)
     {
         ReceiveSwiftMessage(message);
@@ -71,7 +53,6 @@ public class SwiftUIManager : MonoBehaviour
         Debug.Log("Callback from swift: " + command);
 
         if (command == "closed") {
-            Instance.swiftUIWindowOpen = false;
             return;
         }
 
