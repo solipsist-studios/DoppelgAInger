@@ -5,8 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/DefaultAvatar.unity
+  - enabled: 0
+    path: Assets/Scenes/AVPAvatar.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/Samples/PolySpatial/Scenes/ProjectLauncher.unity
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NSFWAvatar.unity
     guid: 36739c875e9634311b7c80468edc6c0d
+  - enabled: 1
+    path: Assets/Scenes/DesktopAvatar.unity
+    guid: 8620fbaf0b29742eebece38fc5d699ad
   m_configObjects:
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: 18d3f188cde6a4f769976956991576d7,
       type: 2}
